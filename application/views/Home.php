@@ -46,8 +46,8 @@
           <div class="col-lg-10">
             <div class="generic-banner-content">
               <h2 class="text-white">BROTH</h2>
-              <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                <br><br>Since 90th Century.</p>
+              <p class="text-white">Website ini diperuntukan bagi pelanggan agar dapat mengetahui informasi yang aktual sistematis dan massif.
+                <br><br>Since 21th Century.</p>
             </div>
           </div>
         </div>
@@ -96,9 +96,7 @@
         <div class="row">
           <div class="col-lg-5 col-md-6 col-sm-6">
             <div class="single-footer-widget">
-              <h6>About Us</h6>
-              <p> <a href="https://brothco.business.site/" style="color:white"> >>>> Website Kami <<<< </a>
-
+            <a href="https://brothco.business.site/" style="color:white">  <h6>About Us</h6></a>
               </p>
             </div>
           </div>
