@@ -23,12 +23,18 @@ class Home extends CI_Controller {
     }
 		else {
 			$data = $this->broth->cek_data($nota)->row_array();
-			if ($data['status'] == 0) {
-				redirect(base_url().'Home?pesan=belum');
-			}
-			else {
-				redirect(base_url().'Home?pesan=sudah');
-			}
+			$session = array(
+			 'tanggal_masuk' => $data['tanggal_masuk'],
+			 'bulan_masuk' => $data['bulan_masuk'],
+			 'tahun_masuk' => $data['tahun_masuk']
+		 );
+			 $this->session->set_userdata($session);
+			 if ($data['status'] == 0) {
+			 	redirect(base_url().'Home?pesan=belum');
+			 }
+			 else {
+			 	redirect(base_url().'Home?pesan=sudah');
+			 }
 		}
 	}
 }

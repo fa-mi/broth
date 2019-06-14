@@ -31,7 +31,6 @@ class Admin extends CI_Controller {
 	  $cek = $data->num_rows();
 	  if($cek > 0){
 	    $session = array(
-	      'id_admin'=> $d->id_admin,
 	      'status' => 'login',
 	    );
 	    $this->session->set_userdata($session);
@@ -77,6 +76,11 @@ class Admin extends CI_Controller {
 	public function ubah_status(){
 			$nota= $this->input->post("nota");
 			$this->broth->ubah_status($nota);
+		redirect(base_url().'Admin/tabel');
+	}
+	public function hapus_nota(){
+			$nota= $this->input->post("nota");
+			$this->broth->hapus_nota($nota);
 		redirect(base_url().'Admin/tabel');
 	}
 	public function logout(){

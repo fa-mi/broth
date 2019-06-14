@@ -111,7 +111,7 @@
         <li class="active">
           <a href="<?php echo site_url(); ?>Admin/tabel">
             <i class="fa fa-table"></i> <span>Data</span>
-            
+
           </a>
         </li>
       </ul>
@@ -146,18 +146,43 @@
                   <th>Tanggal Masuk</th>
                   <th>Status</th>
                   <th>Ubah</th>
+                  <th>Hapus</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php
+                  function tgl_ind($tanggal){
+                     $bulan = array (
+                      1 =>   'Januari',
+                      'Februari',
+                      'Maret',
+                      'April',
+                      'Mei',
+                      'Juni',
+                      'Juli',
+                      'Agustus',
+                      'September',
+                      'Oktober',
+                      'November',
+                      'Desember' );
+                      $pecahkan = explode(',', $tanggal);
+                      return $pecahkan[0] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[2];
+                      }
                                   foreach ($data as $data):
                                     $nota = $data['nota'];
-                                    $waktu_masuk = $data['waktu_masuk'];
+                                    $tanggal_masuk = $data['tanggal_masuk'];
+                                    $bulan_masuk = $data['bulan_masuk'];
+                                    $tahun_masuk = $data['tahun_masuk'];
                                     $status = $data['status'];
+
+
                   ?>
                   <tr data-id='<?php echo $nota ?>'>
                    <td><span class='span-nota caption' data-id='<?php echo $nota; ?>'><?php echo $nota; ?></span> </td>
-                   <td><span class='span-waktu_masuk caption' data-id='<?php echo $nota; ?>'><?php echo $waktu_masuk; ?></span> </td>
+                   <td><span class='span-waktu_masuk caption' data-id='<?php echo $nota; ?>'><?php
+                   echo tgl_ind($tanggal_masuk.','.$bulan_masuk.','.$tahun_masuk); ?>
+                 </span>
+               </td>
                    <td>
                      <?php
                             if ($status == 0): ?>
@@ -168,6 +193,9 @@
                    </td>
                    <td><button class='btn btn-xs btn-default' data-id='<?php echo $nota; ?>' data-toggle='modal' data-target='.modal-ubah-<?php echo $nota; ?>'><i class='fa fa-fw fa-exchange'></i> Ubah Status</button>
                    </td>
+                 </td>
+                 <td><button class='btn btn-xs btn-danger' data-id='<?php echo $nota; ?>' data-toggle='modal' data-target='.modal-hapus-<?php echo $nota; ?>'><i class='fa fa-fw fa-trash'></i> Hapus Nota</button>
+                 </td>
 
                    <div class='modal fade modal-ubah-<?php echo $nota; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
                      <div class='modal-dialog modal-sm'>
@@ -186,6 +214,29 @@
                               <input type='hidden' name='user_id' id='user_id' />
                               <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
                               <input type='submit' name='action' id='action' class='btn btn-success' value='Ubah' />
+                         </div>
+                       </div>
+                       </form>
+                     </div>
+                   </div>
+
+                   <div class='modal fade modal-hapus-<?php echo $nota; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
+                     <div class='modal-dialog modal-sm'>
+                     <form method='post' action='hapus_nota'>
+                       <div class='modal-content'>
+                         <div class='modal-header'>
+                           <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>
+                           </button>
+                           <h4 class='modal-title' id='myModalLabel2'>Hapus Nota</h4>
+                         </div>
+                         <div class='modal-body'>
+                         <label>Nota</label>
+                         <input type='text' name='nota' id='nota' class='form-control' value=<?php echo $nota; ?> readonly>
+                         </div>
+                         <div class='modal-footer'>
+                              <input type='hidden' name='user_id' id='user_id' />
+                              <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                              <input type='submit' name='action' id='action' class='btn btn-danger' value='Hapus' />
                          </div>
                        </div>
                        </form>

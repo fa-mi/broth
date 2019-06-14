@@ -69,15 +69,39 @@
             </h1>
             <input type="text" name="nota" placeholder="NOTA">
             <br><br>
-            <button type="submit" name="button">Cek Barang</button>
+            <button type="submit" name="button" class='btn btn-info'>Cek Barang</button>
           </div>
         </form>
           <div class="col-lg-6 about-right">
             <?php
+            function tgl_indo($tanggal){
+	             $bulan = array (
+		            1 =>   'Januari',
+		            'Februari',
+		            'Maret',
+		            'April',
+		            'Mei',
+		            'Juni',
+		            'Juli',
+		            'Agustus',
+		            'September',
+		            'Oktober',
+		            'November',
+		            'Desember' );
+	              $pecahkan = explode(',', $tanggal);
+	              return $pecahkan[0] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[2];
+                }
 						if(isset($_GET['pesan'])){
 						if($_GET['pesan'] == "belum"){
-						echo "  <div class='alert alert-danger'>Barang Belum Selesai ! Mohon Tunggu Sebentar.</div>";
+              echo "<div class='alert alert-info'> Tanggal Barang Masuk ";
+              echo tgl_indo($this->session->userdata('tanggal_masuk').','.$this->session->userdata('bulan_masuk').','.$this->session->userdata('tahun_masuk'));
+              echo ".</div>";
+						echo "
+            <div class='alert alert-danger'>Barang Belum Selesai ! Mohon Tunggu Sebentar.</div>";
           }else if($_GET['pesan'] == "sudah"){
+            echo "<div class='alert alert-info'> Tanggal Barang Masuk ";
+            echo tgl_indo($this->session->userdata('tanggal_masuk').','.$this->session->userdata('bulan_masuk').','.$this->session->userdata('tahun_masuk'));
+            echo ".</div>";
 						echo "<div class='alert alert-success'>Barang Sudah Selesai ! Sudah Dapat Diambil di Toko.</div>";
           }else if($_GET['pesan'] == "salah"){
 						echo "<div class='alert alert-warning'>Nota Tidak Ada ! Silahkan Cek Kembali Nota Anda.</div>";
