@@ -133,9 +133,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <a href="<?php echo site_url(); ?>Admin/form">
-              <button type="button" class="btn btn-block btn-info btn-lg">Tambah Data</button>
-              </a>
+              <button type="button" class="btn btn-block btn-info btn-lg" data-toggle='modal' data-target='#modal-tambah'>Tambah Data</button>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -217,6 +215,29 @@
                          </div>
                        </div>
                        </form>
+                     </div>
+                   </div>
+
+                   <div id="modal-tambah" class='modal fade modal-alert-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
+                     <div class='modal-dialog modal-sm'>
+                       <form method='post' action=''>
+                       <div class='modal-content'>
+                         <div class='modal-header'>
+                           <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>
+                           </button>
+                           <h4 class='modal-title'>Tambah Nota Transaksi</h4>
+                         </div>
+                         <div class='modal-body'>
+                           <label>Nomor Nota</label>
+                           <input type="text" name="nota" id="nota" class="form-control" onkeypress="isInputChar(event)"
+                           required oninvalid="this.setCustomValidity('Data Tidak Boleh Kosong !')" oninput="setCustomValidity('')">
+                         </div>
+                         <div class='modal-footer'>
+                           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                           <input type='submit' name='action' id='action' class='btn btn-success' value='Submit' />
+                         </div>
+                       </div>
+                      </form>
                      </div>
                    </div>
 
