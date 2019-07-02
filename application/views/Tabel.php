@@ -30,8 +30,13 @@
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+        <script>
+        alert('But wait, there\'s more...');
+        </script>
 </head>
 <body class="hold-transition skin-green sidebar-mini">
+
 <div class="wrapper">
 
   <header class="main-header">
@@ -127,6 +132,7 @@
       </h1>
     </section>
 
+
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -148,6 +154,7 @@
                 </tr>
                 </thead>
                 <tbody>
+
                   <?php
                   function tgl_ind($tanggal){
                      $bulan = array (
@@ -195,7 +202,7 @@
                  <td><button class='btn btn-xs btn-danger' data-id='<?php echo $nota; ?>' data-toggle='modal' data-target='.modal-hapus-<?php echo $nota; ?>'><i class='fa fa-fw fa-trash'></i> Hapus Nota</button>
                  </td>
 
-                   <div class='modal fade modal-ubah-<?php echo $nota; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
+                   <div class='modal modal-success fade modal-ubah-<?php echo $nota; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
                      <div class='modal-dialog modal-sm'>
                      <form method='post' action='ubah_status'>
                        <div class='modal-content'>
@@ -211,16 +218,50 @@
                          <div class='modal-footer'>
                               <input type='hidden' name='user_id' id='user_id' />
                               <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-                              <input type='submit' name='action' id='action' class='btn btn-success' value='Ubah' />
+                              <input type='submit' name='action' id='action' class='btn btn-danger' value='Ubah' />
                          </div>
                        </div>
                        </form>
                      </div>
                    </div>
-
-                   <div id="modal-tambah" class='modal fade modal-alert-<?php echo $nis; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
+                   <div id="modal" class="modal fade" tabindex='-1' role='dialog' aria-hidden='true' data-backdrop='static' data-keyboard='false'>
                      <div class='modal-dialog modal-sm'>
-                       <form method='post' action=''>
+                       <form method='post' action='tabel'>
+                       <div class='modal-content'>
+                         <div class='modal-header'>
+                           <h4 class='modal-title'>Pesan</h4>
+                         </div>
+                         <div class='modal-body'>
+                         <label>Data Nota Sudah Ada Goblok !</label>
+                         </div>
+                         <div class='modal-footer'>
+                              <input type='submit' name='action' id='action' class='btn btn-danger' value='OK' />
+                         </div>
+                       </div>
+                      </form>
+                     </div>
+                   </div>
+                   <div id="berhasil" class='modal fade' tabindex='-1' role='dialog' aria-hidden='true' data-backdrop='static' data-keyboard='false'>
+                     <div class='modal-dialog modal-sm'>
+                       <form method='post' action='tabel'>
+                       <div class='modal-content'>
+                         <div class='modal-header'>
+                           <h4 class='modal-title'>Pesan</h4>
+                         </div>
+                         <div class='modal-body'>
+                         <label>Data Nota Berhasil Dimasukkan Terima Kasih !</label>
+                         </div>
+                         <div class='modal-footer'>
+                              <input type='submit' name='action' id='action' class='btn btn-success' value='OK' />
+                         </div>
+                       </div>
+                      </form>
+                     </div>
+                   </div>
+
+                   <div id="modal-tambah" class='modal fade' tabindex='-1' role='dialog' aria-hidden='true'>
+                     <div class='modal-dialog modal-sm'>
+                       <form method='post' action='tambah'>
                        <div class='modal-content'>
                          <div class='modal-header'>
                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span>
@@ -241,7 +282,7 @@
                      </div>
                    </div>
 
-                   <div class='modal fade modal-hapus-<?php echo $nota; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
+                   <div class='modal fade modal-danger modal-hapus-<?php echo $nota; ?>' tabindex='-1' role='dialog' aria-hidden='true'>
                      <div class='modal-dialog modal-sm'>
                      <form method='post' action='hapus_nota'>
                        <div class='modal-content'>
@@ -257,7 +298,7 @@
                          <div class='modal-footer'>
                               <input type='hidden' name='user_id' id='user_id' />
                               <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-                              <input type='submit' name='action' id='action' class='btn btn-danger' value='Hapus' />
+                              <input type='submit' name='action' id='action' class='btn btn-success' value='Hapus' />
                          </div>
                        </div>
                        </form>
@@ -265,6 +306,21 @@
                    </div>
                    </tr>
 <?php endforeach;?>
+
+<?php
+if(isset($_GET['pesan'])){
+if($_GET['pesan'] == "sudahada"){
+echo "<script type='text/javascript'>$(window).load(function(){
+$('.modal-sudahada').modal('show');
+});</script>";
+}else if($_GET['pesan'] == "berhasil"){
+echo "<script type='text/javascript'>$(window).load(function(){
+$('#modal-berhasil').modal('show');
+});</script>";
+}
+}
+?>
+
                 </tbody>
                 <tfoot>
                 <tr>
@@ -297,6 +353,7 @@
 
 <!-- jQuery 3 -->
 <script src="<?php echo base_url(); ?>assets/admin/bower_components/jquery/dist/jquery.min.js"></script>
+
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url(); ?>assets/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- DataTables -->

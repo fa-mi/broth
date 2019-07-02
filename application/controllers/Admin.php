@@ -53,24 +53,18 @@ class Admin extends CI_Controller {
 		$data['data']= $this->broth->data_barang();
 		$this->load->view('Tabel',$data);
 	}
-	public function form()
-	{
-		if($this->session->userdata('status') != "login"){
-			redirect(base_url().'Admin?pesan=belumlogin');
-		}
-		$this->load->view('Form');
-	}
+
 	public function tambah()
 	{
 		$nota= $this->input->post("nota");
 		$d = $this->broth->edit_data('barang',array('nota' => $nota ));
     $cek = $d->num_rows();
 		if ($cek > 0) {
-      redirect(base_url().'Admin/form?pesan=sudahada');
+      redirect(base_url().'Admin/Tabel?pesan=sudahada');
     }
 		else {
 			$this->broth->tambah($nota);
-		redirect(base_url().'Admin/form?pesan=berhasil');
+		redirect(base_url().'Admin/Tabel?pesan=berhasil');
 		}
 	}
 	public function ubah_status(){
