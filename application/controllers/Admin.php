@@ -45,6 +45,10 @@ class Admin extends CI_Controller {
 	}
 
 	}
+	function form()
+	{
+	$this->load->view('Form');
+	}
 	public function tabel()
 	{
 		if($this->session->userdata('status') != "login"){
@@ -60,11 +64,11 @@ class Admin extends CI_Controller {
 		$d = $this->broth->edit_data('barang',array('nota' => $nota ));
     $cek = $d->num_rows();
 		if ($cek > 0) {
-      redirect(base_url().'Admin/Tabel?pesan=sudahada');
+      redirect(base_url().'Admin/Form?pesan=sudahada');
     }
 		else {
 			$this->broth->tambah($nota);
-		redirect(base_url().'Admin/Tabel?pesan=berhasil');
+		redirect(base_url().'Admin/Form?pesan=berhasil');
 		}
 	}
 	public function ubah_status(){

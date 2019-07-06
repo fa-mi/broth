@@ -31,9 +31,6 @@
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-        <script>
-        alert('But wait, there\'s more...');
-        </script>
 </head>
 <body class="hold-transition skin-green sidebar-mini">
 
@@ -139,7 +136,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <button type="button" class="btn btn-block btn-info btn-lg" data-toggle='modal' data-target='#modal-tambah'>Tambah Data</button>
+              <a href="<?php echo site_url(); ?>Admin/form"><button type="button" class="btn btn-block btn-info btn-lg"> Tambah Data</button></a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
